@@ -64,7 +64,6 @@ def register(request):
                                       tiposDeServicio=TiposDeServicio.objects.get(pk=request.POST.get('tiposDeServicio')),
                                       telefono=request.POST.get('telefono'),
                                       correo=request.POST.get('correo'),
-                                      imagen=request.FILES['imagen'],
                                       usuarioId=user)
         nuevo_trabajador.save()
 
