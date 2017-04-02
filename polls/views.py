@@ -28,7 +28,7 @@ def index(request):
 
 def login(request):
     username = request.POST.get('usrname', '')
-    password = request.POST.get('psw', '')
+    password = request.POST.get('passwd', '')
     user = auth.authenticate(username=username, password=password)
     if user is not None:
         auth.login(request, user)

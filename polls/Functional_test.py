@@ -67,10 +67,10 @@ class FunctionalTest(TestCase):
         self.browser.get('http://localhost:8000')
         link = self.browser.find_element_by_id('id_login')
         link.click()
-        time.sleep(3)
-        nombre = self.browser.find_element_by_id('username')
-        nombre.send_keys('juan645')
-        password = self.browser.find_element_by_id('id_password')
+        time.sleep(1)
+        username = self.browser.find_element_by_id('usrname')
+        username.send_keys('feruiz')
+        password = self.browser.find_element_by_id('passwd')
         password.send_keys('clave123')
-
-
+        botonGrabar = self.browser.find_element_by_id('id_aceptar')
+        botonGrabar.click()
