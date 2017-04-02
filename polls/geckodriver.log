@@ -1,13 +1,15 @@
-1491094340946	geckodriver	INFO	Listening on 127.0.0.1:62666
-1491094342981	mozprofile::profile	INFO	Using profile path C:\Users\Lenovo\AppData\Local\Temp\rust_mozprofile.S0kLwZa9xI3g
-1491094342992	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args []
-1491094343002	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62673
-[GFX1]: Potential driver version mismatch ignored due to missing DLLs 0.0.0.0 and 0.0.0.0
-1491094344224	Marionette	INFO	Listening on port 62673
-1491094345247	Marionette	WARN	TLS certificate errors will be ignored for this session
-[GFX1]: Potential driver version mismatch ignored due to missing DLLs 0.0.0.0 and 0.0.0.0
-1491094350768	Marionette	INFO	New connections will no longer be accepted
-[Child 180] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+1491104166465	geckodriver	INFO	Listening on 127.0.0.1:59482
+1491104168490	mozprofile::profile	INFO	Using profile path C:\Users\paula\AppData\Local\Temp\rust_mozprofile.Tt3xqg1WcPzO
+1491104168522	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args []
+1491104168536	geckodriver::marionette	INFO	Connecting to Marionette on localhost:59489
+1491104170199	Marionette	INFO	Listening on port 59489
+1491104171919	Marionette	WARN	TLS certificate errors will be ignored for this session
+1491104177399	Marionette	INFO	New connections will no longer be accepted
+[Child 7668] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+
+12
+[Child 9924] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+el.cpp, line 2143
 
 
 sgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
