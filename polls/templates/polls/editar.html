@@ -1,4 +1,4 @@
-<div class="modal fade" id="register_modal" role="dialog">
+<div class="modal fade" id="edit_modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,8 +6,9 @@
                 <h4><span class="glyphicon glyphicon-user"></span> Editar</h4>
             </div>
             <!--suppress HtmlUnknownTarget -->
-            <form role="form" action="editar" method="post" enctype="multipart/form-data" id="register-form" novalidate="novalidate">
+            <form role="form" data-update-worker-url="{% url 'principal:editar' idTrabajador=0%}" enctype="multipart/form-data" id="editar-form">
                 {% csrf_token %}
+                <label id="idhidden" hidden></label>
                 <div class="modal-body">
                     {% for field in form_trabajador %}
                     <div class="form-group">
@@ -15,18 +16,11 @@
                         {{ field }}
                     </div>
                     {% endfor %}
-                    {% for field in form_usuario %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
-                    </div>
-                    {% endfor %}
                 </div>
                 <div class="modal-footer btn-toolbar">
-                    <button type="submit"id="id_grabar" class="btn btn-default btn-success pull-right">
-                        <span class="glyphicon glyphicon-save"></span> Guardar
-                    </button>
-                    <button type="submit" class="btn btn-default btn-default pull-right" data-dismiss="modal"
+                    <input type="button" id="id_grabar" class="btn btn-default btn-success pull-right" onclick=saveWorker(); value="Guardar">
+                    </input>
+                    <button type="submit" id="id_cancelar" class="btn btn-default btn-default pull-right" data-dismiss="modal"
                             style="margin-left: 5px">
                         <span class="glyphicon glyphicon-remove"></span> Cancelar
                     </button>
@@ -38,7 +32,7 @@
 <!--suppress JSUnresolvedFunction -->
 <script type="text/javascript">
     $(document).ready(function () {
-        var validator = $("#register-form").validate({
+        var validator = $("#editar-form").validate({
             rules: {
                 nombre: "required",
                 apellidos: "required",
@@ -89,8 +83,25 @@
             return true;
 
         });
-        $('#register_modal').on('hidden.bs.modal', function () {
+        $('#edit_modal').on('hidden.bs.modal', function () {
             validator.resetForm();
         })
     });
+
+    function saveWorker(){
+        var worker ={};
+        worker.usuarioId = $("#editar-form #idhidden").val();
+        worker.nombre = $("#editar-form #id_nombre").val();
+        worker.apellidos= $("#editar-form #id_apellidos").val();
+        worker.aniosExperiencia = $("#editar-form #id_aniosExperiencia").val();
+        worker.telefono= $("#editar-form #id_telefono").val();
+        worker.correo = $("#editar-form #id_correo").val();
+        worker.tiposDeServicio =$("#editar-form #id_tiposDeServicio option:selected").val();
+
+        var url =  $("#editar-form").attr("data-update-worker-url");
+        url = "http://{{ request.META.HTTP_HOST }}" + url.replace("0",worker.usuarioId);
+        $.post( url, worker).done(function( data ) {
+                  console.log("done")
+              });
+    }
 </script>

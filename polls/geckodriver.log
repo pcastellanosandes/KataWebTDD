@@ -1,18 +1,29 @@
-1491104166465	geckodriver	INFO	Listening on 127.0.0.1:59482
-1491104168490	mozprofile::profile	INFO	Using profile path C:\Users\paula\AppData\Local\Temp\rust_mozprofile.Tt3xqg1WcPzO
-1491104168522	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args []
-1491104168536	geckodriver::marionette	INFO	Connecting to Marionette on localhost:59489
-1491104170199	Marionette	INFO	Listening on port 59489
-1491104171919	Marionette	WARN	TLS certificate errors will be ignored for this session
-1491104177399	Marionette	INFO	New connections will no longer be accepted
-[Child 7668] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+1491280063681	geckodriver	INFO	Listening on 127.0.0.1:55398
+1491280065740	mozprofile::profile	INFO	Using profile path C:\Users\paula\AppData\Local\Temp\rust_mozprofile.qa0y2OOutLB2
+1491280065748	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args []
+1491280065757	geckodriver::marionette	INFO	Connecting to Marionette on localhost:55405
+1491280067294	Marionette	INFO	Listening on port 55405
+1491280068960	Marionette	WARN	TLS certificate errors will be ignored for this session
+1491280063309	Marionette	INFO	New connections will no longer be accepted
+[Child 16700] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+s/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+oy) Channel error: cannot send/recv
 
-12
-[Child 9924] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
-el.cpp, line 2143
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
 
 
-sgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
+###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
 
 
 ###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
@@ -37,26 +48,12 @@ sgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
 
 
 ###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
-
-
-###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
-
-
-###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
-
-
-###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
-
-
-###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
-
-
-###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
 
 
 ###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
 
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
-[Child 6464] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+[Child 8376] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
 name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
 

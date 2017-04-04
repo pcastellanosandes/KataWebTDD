@@ -13,7 +13,7 @@ from .models import TiposDeServicio
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib import auth
-
+from rest_framework.exceptions import ValidationError, NotFound
 
 def index(request):
     trabajadores = Trabajador.objects.all()
@@ -69,23 +69,33 @@ def register(request):
 
     return HttpResponseRedirect('/')
 
-def editar_perfil(request,idTrabajador):
+@csrf_exempt
+def editar_perfil(request, idTrabajador):
     trabajador=Trabajador.objects.get(usuarioId=idTrabajador)
     if request.method == 'POST':
-        # formulario enviado
-        form_trabajador = TrabajadorForm(request.POST, request.FILES, instance=trabajador)
+        data = request.POST
+        if data.has_key("nombre"):
+            trabajador.nombre = data["nombre"]
+        if data.has_key("apellidos"):
+            trabajador.apellidos = data["apellidos"]
+        if data.has_key("aniosExperiencia"):
+            trabajador.aniosExperiencia = data["aniosExperiencia"]
 
-        if form_trabajador.is_valid():
-            # formulario validado correctamente
-            form_trabajador.save()
-            return HttpResponseRedirect('/')
+        if data.has_key("telefono"):
+            trabajador.telefono = data["telefono"]
+        if data.has_key("correo"):
+            trabajador.correo = data["correo"]
+        if data.has_key("tiposDeServicio"):
+            tipoServicio = data["tiposDeServicio"]
+            try:
+                servicio = TiposDeServicio.objects.get(id=tipoServicio)
+            except:
+                raise ValidationError({'idProyecto': ['No existe servicio ' + tipoServicio]})
+            trabajador.tiposDeServicio = servicio
 
-    else:
-        # formulario inicial
-        form_trabajador = TrabajadorForm(instance=trabajador)
+            trabajador.save()
 
-    context = {'form_trabajador': form_trabajador}
-    return render(request, 'polls/editar.html', context)
+    return HttpResponse(serializers.serialize("json", [trabajador]), content_type="application/json")
 
 @csrf_exempt
 def add_comment(request):

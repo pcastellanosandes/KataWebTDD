@@ -17,6 +17,45 @@ class FunctionalTest(TestCase):
         self.browser.get('http://localhost:8000')
         self.assertIn('Busco Ayuda', self.browser.title)
 
+    def test_update_user_information(self):
+        self.browser.get('http://localhost:8000')
+        link = self.browser.find_element_by_id('id_login')
+        link.click()
+        time.sleep(5)
+        username = self.browser.find_element_by_id('usrname')
+        username.send_keys('feruiz')
+        password = self.browser.find_element_by_id('passwd')
+        password.send_keys('clave123')
+        botonGrabar = self.browser.find_element_by_id('id_aceptar')
+        botonGrabar.click()
+        time.sleep(3)
+        editar = self.browser.find_element_by_id('id_editar')
+        editar.click()
+        time.sleep(5)
+        nombre = self.browser.find_element_by_id("editar-form").find_element_by_id("id_nombre")
+        nombre.clear()
+        nombre.send_keys('Fernando')
+
+        apellidos = self.browser.find_element_by_id("editar-form").find_element_by_id('id_apellidos')
+        apellidos.clear()
+        apellidos.send_keys('Ortiz')
+
+        botonGrabar = self.browser.find_element_by_id("editar-form").find_element_by_id('id_grabar')
+        botonGrabar.click()
+
+        botonCancelar = self.browser.find_element_by_id("editar-form").find_element_by_id('id_cancelar')
+        botonCancelar.click()
+        time.sleep(5)
+        link = self.browser.find_element_by_id('id_logout')
+        link.click()
+        time.sleep(5)
+
+        self.browser.implicitly_wait(3)
+        span = self.browser.find_element(By.XPATH, '//span[text()="Fernando Ortiz"]')
+
+        self.assertIn('Fernando Ortiz', span.text)
+
+
     def test_registro(self):
             self.browser.get('http://localhost:8000')
             link = self.browser.find_element_by_id('id_register')
@@ -38,9 +77,6 @@ class FunctionalTest(TestCase):
             correo = self.browser.find_element_by_id('id_correo')
             correo.send_keys('jd.patino1@uniandes.edu.co')
 
-            #imagen = self.browser.find_element_by_id('id_imagen')
-            #imagen.send_keys('C:\Users\Lenovo\Pictures\developer.jpg')
-
             nombreUsuario = self.browser.find_element_by_id('id_username')
             nombreUsuario.send_keys('juan645')
 
@@ -58,7 +94,7 @@ class FunctionalTest(TestCase):
         self.browser.get('http://localhost:8000')
         span=self.browser.find_element(By.XPATH, '//span[text()="Juan Daniel Arevalo"]')
         span.click()
-
+        time.sleep(5)
         h2=self.browser.find_element(By.XPATH, '//h2[text()="Juan Daniel Arevalo"]')
 
         self.assertIn('Juan Daniel Arevalo', h2.text)
@@ -77,29 +113,5 @@ class FunctionalTest(TestCase):
         btnEditar = self.browser.find_element_by_id('id_editar')
         self.assertIsNotNone(btnEditar, "Fallo prueba login")
 
-    def test_update_user_information(self):
-        self.browser.get('http://localhost:8000')
-        link = self.browser.find_element_by_id('id_login')
-        link.click()
-        time.sleep(1)
-        username = self.browser.find_element_by_id('usrname')
-        username.send_keys('feruiz')
-        password = self.browser.find_element_by_id('passwd')
-        password.send_keys('clave123')
-        botonGrabar = self.browser.find_element_by_id('id_aceptar')
-        botonGrabar.click()
-        editar = self.browser.find_element_by_id('id_editar')
-        editar.click()
 
-        nombre = self.browser.find_element_by_id('id_nombre')
-        nombre.send_keys('Fernando')
 
-        apellidos = self.browser.find_element_by_id('id_apellidos')
-        apellidos.send_keys('Ortiz')
-
-        botonGrabar = self.browser.find_element_by_id('id_grabar')
-        botonGrabar.click()
-        self.browser.implicitly_wait(3)
-        span = self.browser.find_element(By.XPATH, '//span[text()="Fernando Ortiz"]')
-
-        self.assertIn('Fernando Ortiz', span.text)

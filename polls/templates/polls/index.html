@@ -29,11 +29,8 @@
 <body>
 <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
     {% if user.is_authenticated %}
-
-            <li><a href="{% url 'principal:editar' idTrabajador=user.id %}" id="id_editar"><span class="glyphicon glyphicon-user"></span> Editar</a></li>
-    <li>
-            <a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-        </li>
+            <li><a href="#" id="id_editar"><span class="glyphicon glyphicon-user"></span> Editar</a></li>
+            <li><a href="logout" id="id_logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     {% else %}
         <li><a href="#" id="id_register"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
         <li><a href="#" id="id_login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -109,6 +106,27 @@
             $('#register_modal').modal();
         });
 
+        $('#id_editar').click(function () {
+            $('#edit_modal').modal();
+             {% if user %}
+                $('#edit_modal').ready(function(){
+                    var idUser = "{{ user.id }}";
+                    var url  = "{% url 'principal:editar' idTrabajador=0 %}";
+                    if(idUser!= undefined)
+                        url = url.replace("0",idUser);
+                     $.ajax({
+                        url: url,
+                        async:true,
+                        method: "GET",
+                        success: successWorker,
+                        error: function(response){
+                            console.log("error al traer el usuario")
+                        }
+                    });
+                });
+             {% endif %}
+        });
+
         $('.trabajador').click(function () {
             var trabajador = $(this).data("form");
             localStorage.setItem('trabajador', trabajador);
@@ -121,12 +139,23 @@
         $("#buscar").keyup(function(){
             $('#trabajadores').clear;
             mostrarTrabajadores();
-});
+        });
     });
     function detalle(id){
             localStorage.setItem('trabajador', id);
             window.location = "/detail";
-}
+    }
+
+    function successWorker(workerResponse){
+        var worker = workerResponse[0].fields;
+        $("#editar-form #idhidden").val(worker.usuarioId);
+        $("#editar-form #id_nombre").val(worker.nombre);
+        $("#editar-form #id_apellidos").val(worker.apellidos);
+        $("#editar-form #id_aniosExperiencia").val(worker.aniosExperiencia);
+        $("#editar-form #id_telefono").val(worker.telefono);
+        $("#editar-form #id_correo").val(worker.correo);
+        $("#editar-form #id_tiposDeServicio option[value=" + worker.tiposDeServicio +"]").attr("selected","selected");
+    }
 
     function mostrarTrabajadores(){
 
