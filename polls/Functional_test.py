@@ -113,5 +113,20 @@ class FunctionalTest(TestCase):
         btnEditar = self.browser.find_element_by_id('id_editar')
         self.assertIsNotNone(btnEditar, "Fallo prueba login")
 
+    def test_crear_comentario(self):
+        self.browser.get('http://localhost:8000')
+        span = self.browser.find_element(By.XPATH, '//span[text()="Juan Daniel Arevalo"]')
+        span.click()
+        time.sleep(3)
+        h2 = self.browser.find_element(By.XPATH, '//h2[text()="Juan Daniel Arevalo"]')
+        self.assertIn('Juan Daniel Arevalo', h2.text)
+        time.sleep(1)
+        correo = self.browser.find_element_by_id('correo')
+        correo.send_keys('juam@gmail.com')
+        comentario = self.browser.find_element_by_id('comentario')
+        comentario.send_keys('Este es un comentariooo ')
+        time.sleep(1)
+        botonGrabar = self.browser.find_element_by_id('id_guarda_comentario')
+        botonGrabar.click()
 
 
